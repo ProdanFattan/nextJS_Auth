@@ -2,13 +2,9 @@ import UserModel from "@/models/user.model";
 import bcryptjs from "bcryptjs";
 const nodemailer = require("nodemailer");
 
-export const sendMail = async (
-  email: string,
-  emailType: string,
-  userID: string
-) => {
+export const sendMail = async ({ email, emailType, userID }: any) => {
   try {
-    const hasedToken = await bcryptjs.hash(userID.toString(), 10);
+    const hasedToken = await bcryptjs.hash("fattan101010", 10);
     if (emailType === "VERIFY") {
       await UserModel.findByIdAndUpdate(userID, {
         verifyToken: hasedToken,
@@ -36,7 +32,7 @@ export const sendMail = async (
         emailType === "VERIFY" ? "Verify your email" : "Reset your password",
       html: `<p>Click <a href="${
         process.env.DOMAIN
-      }/verifyemail?token=${hasedToken}">here</> to ${
+      }/verifyemail?token=${hasedToken}">here</a> to ${
         emailType === "VERIFY" ? "verify your email" : "reset your password"
       } or  copy and paste the link below in your password <br> ${
         process.env.DOMAIN

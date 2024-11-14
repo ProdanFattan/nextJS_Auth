@@ -1,20 +1,6 @@
-import { Document, Model, model, models, Schema } from "mongoose";
+import mongoose from "mongoose";
 
-export interface IUser extends Document {
-  name: string;
-  email: string;
-  password: string;
-  isVerified: boolean;
-  isAdmin: boolean;
-  forgotPasswordToken: string;
-  forgotPasswordTokenExpiry: Date;
-  verifyToken: string;
-  verifyTokenExpiry: Date;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-const UserSchema: Schema<IUser> = new Schema(
+const UserSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -47,6 +33,6 @@ const UserSchema: Schema<IUser> = new Schema(
     timestamps: true,
   }
 );
-const UserModel: Model<IUser> = models.User || model<IUser>("User", UserSchema);
+const UserModel = mongoose.models.User || mongoose.model("User", UserSchema);
 
 export default UserModel;
