@@ -10,6 +10,7 @@ This project is created using basic nextJS concept
 - nodemailer
 - bcrypt
 - mongoose
+- jsonwebtoken
 
 ## Getting Started
 
